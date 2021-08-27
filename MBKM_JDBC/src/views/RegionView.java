@@ -9,6 +9,7 @@ import daos.RegionDAO;
 import java.util.Scanner;
 import models.Region;
 import tools.DBConnection;
+import tools.MBKM_JDBC;
 
 /**
  *
@@ -19,7 +20,8 @@ public class RegionView {
     Scanner sc = new Scanner(System.in);
     DBConnection dbc = new DBConnection();
     RegionDAO rdao = new RegionDAO(dbc.getConnection());
-    int reg_id, pil;
+    MBKM_JDBC m = new MBKM_JDBC();
+    int reg_id;
     String reg_name;
 
     public RegionView() {
@@ -33,39 +35,29 @@ public class RegionView {
     public void InputData() {
         System.out.print("Region ID = ");
         this.reg_id = sc.nextInt();
-        if (this.pil == 1 || this.pil == 2) {
+        if (m.pil == 1 || m.pil == 2) {
             System.out.print("Region Name = ");
             this.reg_name = sc.next();
         }
     }
 
-    public void Menu() {
-        System.out.println("MENU");
-        System.out.println("1. Insert");
-        System.out.println("2. Update");
-        System.out.println("3. Delete");
-        System.out.println("4. View All");
-        System.out.println("5. Search by Id");
-        System.out.println("6. Exit");
-        System.out.print("Masukkan pilihan : ");
-        this.pil = sc.nextInt();
-    }
-
     public void Logika() {
 
         do {
-            Menu();
-            switch (pil) {
+            m.Menu();
+            switch (m.pil) {
                 case 1:
                     System.out.println("== Insert ==");
                     InputData();
                     rdao.save(new Region(reg_id, reg_name));
                     break;
+                    
                 case 2:
                     System.out.println("== Update ==");
                     InputData();
                     rdao.save(new Region(reg_id, reg_name));
                     break;
+                    
                 case 3:
                 System.out.println("== Delete ==");
                 InputData();
@@ -82,11 +74,13 @@ public class RegionView {
                     );
                 }
                     break;
+                    
                 case 4:
                     for (Region r : rdao.getAll()) {
                         System.out.println(r.getId() + " - " + r.getName());
                     }
                     break;
+                    
                 case 5:
                     do {
                         InputData();
@@ -98,10 +92,11 @@ public class RegionView {
                         }
                     } while (rdao.getById(reg_id) == null);
                     break;
+                    
                 default:
                     System.out.println("Pilihan Anda Salah");
                 }
-        }while (pil != 6);
+        }while (m.pil != 6);
     }
     
 }

@@ -80,6 +80,26 @@ public class JobDAO {
         }
         return false;
       }
+      
+         public boolean save(Job job) {
+        try {
+            boolean isInsert = getById(job.getJob_id()) == null;
+            System.out.println(isInsert ? "Insert Berhasil" : "Update Berhasil");
+            String query = isInsert
+                    ? "INSERT INTO tb_job (job_title, min_salary, max_salary, job_id) VALUES (?,?,?,?)"
+                    : "UPDATE tb_job SET job_title = ?, min_salary = ?, max_salary = ? WHERE job_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, job.getJob_title());
+            preparedStatement.setDouble(2, job.getMin_salary());
+            preparedStatement.setDouble(3, job.getMax_salary());
+            preparedStatement.setString(4, job.getJob_id());
+            preparedStatement.execute();
+            return true;
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return false;
+    }
         
         public Job getById(String id) {
         Job job = null;

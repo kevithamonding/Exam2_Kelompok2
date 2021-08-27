@@ -6,9 +6,12 @@
 package tools;
 
 import daos.RegionDAO;
+import daos.JobDAO;
 import java.util.Scanner;
 import models.Region;
+import models.Job;
 import views.RegionView;
+import views.JobView;
 
 /**
  *
@@ -19,19 +22,11 @@ public class MBKM_JDBC {
     /**
      * @param args the command line arguments
      */  Scanner sc = new Scanner(System.in);
-    int reg_id, pil ;
+    public int reg_id, pil ;
     String reg_name;
 
-    void InputData() {
-        System.out.print("Region ID = ");
-        this.reg_id = sc.nextInt();
-        if (this.pil == 1 || this.pil == 2) {
-            System.out.print("Region Name = ");
-            this.reg_name = sc.next();
-        }
-    }
 
-    void Menu() {
+    public void Menu() {
         System.out.println("MENU");
         System.out.println("1. Insert");
         System.out.println("2. Update");
@@ -43,16 +38,16 @@ public class MBKM_JDBC {
         this.pil = sc.nextInt();
     }
     
-    void MainMenu(){
-        System.out.println("MENU");
-        System.out.println("1. Insert");
-        System.out.println("2. Update");
-        System.out.println("3. Delete");
-        System.out.println("4. View All");
-        System.out.println("5. Search by Id");
-        System.out.println("6. Exit");
-        System.out.print("Masukkan pilihan : ");
-    }
+//    void MainMenu(){
+//        System.out.println("MENU");
+//        System.out.println("1. Insert");
+//        System.out.println("2. Update");
+//        System.out.println("3. Delete");
+//        System.out.println("4. View All");
+//        System.out.println("5. Search by Id");
+//        System.out.println("6. Exit");
+//        System.out.print("Masukkan pilihan : ");
+//    }
     
     public static void main(String[] args) {
         DBConnection dbc = new DBConnection();
@@ -63,8 +58,12 @@ public class MBKM_JDBC {
 
         //Dependency Injection
         RegionDAO rdao = new RegionDAO(dbc.getConnection());
-        RegionView region = new RegionView();
-        region.Logika();
+        JobDAO jdao = new JobDAO(dbc.getConnection());
+//        RegionView region = new RegionView();
+//        region.Logika();
+
+          JobView job = new JobView();
+          job.Logika();
             
     }
 
