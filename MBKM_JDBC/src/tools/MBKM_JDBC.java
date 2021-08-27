@@ -18,7 +18,42 @@ public class MBKM_JDBC {
 
     /**
      * @param args the command line arguments
-     */
+     */  Scanner sc = new Scanner(System.in);
+    int reg_id, pil ;
+    String reg_name;
+
+    void InputData() {
+        System.out.print("Region ID = ");
+        this.reg_id = sc.nextInt();
+        if (this.pil == 1 || this.pil == 2) {
+            System.out.print("Region Name = ");
+            this.reg_name = sc.next();
+        }
+    }
+
+    void Menu() {
+        System.out.println("MENU");
+        System.out.println("1. Insert");
+        System.out.println("2. Update");
+        System.out.println("3. Delete");
+        System.out.println("4. View All");
+        System.out.println("5. Search by Id");
+        System.out.println("6. Exit");
+        System.out.print("Masukkan pilihan : ");
+        this.pil = sc.nextInt();
+    }
+    
+    void MainMenu(){
+        System.out.println("MENU");
+        System.out.println("1. Insert");
+        System.out.println("2. Update");
+        System.out.println("3. Delete");
+        System.out.println("4. View All");
+        System.out.println("5. Search by Id");
+        System.out.println("6. Exit");
+        System.out.print("Masukkan pilihan : ");
+    }
+    
     public static void main(String[] args) {
         DBConnection dbc = new DBConnection();
         Scanner sc = new Scanner(System.in);
