@@ -28,7 +28,8 @@ public class MBKM_JDBC {
 
         //Dependency Injection
         RegionDAO rdao = new RegionDAO(dbc.getConnection());
-
+        RegionView region = new RegionView();
+        region.Logika();
             
     }
 
