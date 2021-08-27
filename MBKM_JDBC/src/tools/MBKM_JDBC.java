@@ -69,8 +69,8 @@ public class MBKM_JDBC {
 //          JobView job = new JobView();
 //          job.Logika();
 
-          DepartmentView department = new DepartmentView();
-          department.Logika();
+//          DepartmentView department = new DepartmentView();
+//          department.Logika();
           
             
     }
