@@ -62,8 +62,8 @@ public class MBKM_JDBC {
 //        RegionView region = new RegionView();
 //        region.Logika();
 
-          JobView job = new JobView();
-          job.Logika();
+//          JobView job = new JobView();
+//          job.Logika();
             
     }
 
