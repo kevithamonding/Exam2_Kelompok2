@@ -10,14 +10,14 @@ package models;
  * @author rebel
  */
 public class Location {
-    private String location_id, stress_address, postal_code, city, state_province, country_id;
+    private String location_id, street_address, postal_code, city, state_province, country_id;
 
     public Location() {
     }
 
     public Location(String location_id, String stress_address, String postal_code, String city, String state_province, String country_id) {
         this.location_id = location_id;
-        this.stress_address = stress_address;
+        this.street_address = stress_address;
         this.postal_code = postal_code;
         this.city = city;
         this.state_province = state_province;
@@ -41,15 +41,15 @@ public class Location {
     /**
      * @return the stress_address
      */
-    public String getStress_address() {
-        return stress_address;
+    public String getStreet_address() {
+        return street_address;
     }
 
     /**
      * @param stress_address the stress_address to set
      */
     public void setStress_address(String stress_address) {
-        this.stress_address = stress_address;
+        this.street_address = stress_address;
     }
 
     /**
@@ -106,6 +106,11 @@ public class Location {
      */
     public void setCountry_id(String country_id) {
         this.country_id = country_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" + "location_id=" + location_id + ", street_address=" + street_address + ", postal_code=" + postal_code + ", city=" + city + ", state_province=" + state_province + ", country_id=" + country_id + '}';
     }
     
     

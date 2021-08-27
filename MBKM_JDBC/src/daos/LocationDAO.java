@@ -40,9 +40,9 @@ public class LocationDAO {
       
       public boolean insert(Location location){
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO tb_location (location_id, stress_address, postal_code, city, state_province, country_id) VALUES (?,?,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO tb_location (location_id, street_address, postal_code, city, state_province, country_id) VALUES (?,?,?,?,?,?)");
             preparedStatement.setString(1, location.getLocation_id());
-            preparedStatement.setString(2, location.getStress_address());
+            preparedStatement.setString(2, location.getStreet_address());
             preparedStatement.setString(3, location.getPostal_code());
             preparedStatement.setString(4, location.getCity());
             preparedStatement.setString(5, location.getState_province());
@@ -59,7 +59,7 @@ public class LocationDAO {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE tb_location SET location_id = ?, stress_address = ?, postal_code = ?, city = ?, state_province = ?, country_id = ? WHERE location_id = ?");
             preparedStatement.setString(1, location.getLocation_id());
-            preparedStatement.setString(2, location.getStress_address());
+            preparedStatement.setString(2, location.getStreet_address());
             preparedStatement.setString(3, location.getPostal_code());
             preparedStatement.setString(4, location.getCity());
             preparedStatement.setString(5, location.getState_province());
@@ -93,7 +93,7 @@ public class LocationDAO {
                     ? "INSERT INTO tb_location (stress_address, postal_code, city, state_province, country_id, location_id) VALUES (?,?,?,?,?,?)"
                     : "UPDATE tb_location SET stress_address = ?, postal_code = ?, city = ?, state_province = ?, country_id = ? WHERE location_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, location.getStress_address());
+            preparedStatement.setString(1, location.getStreet_address());
             preparedStatement.setString(2, location.getPostal_code());
             preparedStatement.setString(3, location.getCity());
             preparedStatement.setString(4, location.getState_province());
