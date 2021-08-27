@@ -77,6 +77,11 @@ public class Department {
     public void setManager_id(String manager_id) {
         this.manager_id = manager_id;
     }
+
+    @Override
+    public String toString() {
+        return "Department{" + "department_id=" + department_id + ", department_name=" + department_name + ", location_id=" + location_id + ", manager_id=" + manager_id + '}';
+    }
     
     
 }

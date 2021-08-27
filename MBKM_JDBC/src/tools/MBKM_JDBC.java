@@ -7,11 +7,14 @@ package tools;
 
 import daos.RegionDAO;
 import daos.JobDAO;
+import daos.DepartmentDAO;
 import java.util.Scanner;
 import models.Region;
 import models.Job;
+import models.Department;
 import views.RegionView;
 import views.JobView;
+import views.DepartmentView;
 
 /**
  *
@@ -57,13 +60,18 @@ public class MBKM_JDBC {
         System.out.println(dbc.getConnection());
 
         //Dependency Injection
-        RegionDAO rdao = new RegionDAO(dbc.getConnection());
-        JobDAO jdao = new JobDAO(dbc.getConnection());
+//        RegionDAO rdao = new RegionDAO(dbc.getConnection());
+//        JobDAO jdao = new JobDAO(dbc.getConnection());
+
 //        RegionView region = new RegionView();
 //        region.Logika();
 
 //          JobView job = new JobView();
 //          job.Logika();
+
+          DepartmentView department = new DepartmentView();
+          department.Logika();
+          
             
     }
 

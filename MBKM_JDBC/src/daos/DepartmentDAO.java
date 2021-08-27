@@ -90,10 +90,10 @@ public class DepartmentDAO {
                     ? "INSERT INTO tb_department (department_name, location_id, manager_id, department_id) VALUES (?,?,?,?)"
                     : "UPDATE tb_department SET department_name = ?, location_id = ?, manager_id = ? WHERE department_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, department.getDepartment_id());
-            preparedStatement.setString(2, department.getDepartment_name());
-            preparedStatement.setString(3, department.getLocation_id());
-            preparedStatement.setString(4, department.getManager_id());
+            preparedStatement.setString(1, department.getDepartment_name());
+            preparedStatement.setString(2, department.getLocation_id());
+            preparedStatement.setString(3, department.getManager_id());
+             preparedStatement.setString(4, department.getDepartment_id());
             preparedStatement.execute();
             return true;
         } catch (Exception e) {
