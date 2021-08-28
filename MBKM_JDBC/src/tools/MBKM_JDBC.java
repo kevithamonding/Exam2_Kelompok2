@@ -41,6 +41,7 @@ public class MBKM_JDBC {
 
         DBConnection dbc = new DBConnection();
         Scanner sc = new Scanner(System.in);
+        MBKM_JDBC m = new MBKM_JDBC();
 
         int piltabel;
 
