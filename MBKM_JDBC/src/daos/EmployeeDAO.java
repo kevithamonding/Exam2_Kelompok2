@@ -44,7 +44,7 @@ public class EmployeeDAO {
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
-                        resultSet.getString(6),
+                        resultSet.getDate(6),
                         resultSet.getDouble(7),
                         resultSet.getDouble(8),
                         resultSet.getString(9),
@@ -82,7 +82,7 @@ public class EmployeeDAO {
             preparedStatement.setString(2, employee.getLast_name());
             preparedStatement.setString(3, employee.getEmail());
             preparedStatement.setString(4, employee.getPhone_number());
-            preparedStatement.setString(5, employee.getHire_date());
+            preparedStatement.setDate(5, employee.getHire_date());
             preparedStatement.setDouble(6, employee.getSalary());
             preparedStatement.setDouble(7, employee.getCommisionPct());
             preparedStatement.setString(8, employee.getJobId());
@@ -138,7 +138,7 @@ public class EmployeeDAO {
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
-                        resultSet.getString(6),
+                        resultSet.getDate(6),
                         resultSet.getDouble(7),
                         resultSet.getDouble(8),
                         resultSet.getString(9),

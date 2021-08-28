@@ -5,17 +5,19 @@
  */
 package models;
 
+import java.sql.Date;
+
 /**
  *
  * @author Asus
  */
 public class Employee {
-    private String id, first_name, last_name, email, phone_number, hire_date;
-//    private Date hire_date;
+    private String id, first_name, last_name, email, phone_number;
+    private Date hire_date;
     private double salary, commisionPct;
     private String jobId, managerId, departmentId;
 
-    public Employee(String id, String first_name, String last_name, String email, String phone_number, String hire_date, double salary, double commisionPct, String jobId, String managerId, String departmentId) {
+    public Employee(String id, String first_name, String last_name, String email, String phone_number, Date hire_date, double salary, double commisionPct, String jobId, String managerId, String departmentId) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -78,11 +80,11 @@ public class Employee {
         this.phone_number = phone_number;
     }
 
-    public String getHire_date() {
+    public Date getHire_date() {
         return hire_date;
     }
 
-    public void setHire_date(String hire_date) {
+    public void setHire_date(Date hire_date) {
         this.hire_date = hire_date;
     }
 

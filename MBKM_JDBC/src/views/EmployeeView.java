@@ -6,6 +6,7 @@
 package views;
 
 import daos.EmployeeDAO;
+import java.sql.Date;
 import java.util.Scanner;
 import models.Employee;
 import tools.DBConnection;
@@ -21,7 +22,8 @@ public class EmployeeView {
     DBConnection dbc = new DBConnection();
     EmployeeDAO edao = new EmployeeDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();
-    String emp_hire_date, tbl;
+    String tbl, sDate;
+    Date emp_hire_date;
     double emp_salary, emp_commisionPct;
     String emp_id, emp_first_name, emp_last_name, emp_email, emp_phone_number, emp_jobId, emp_managerId, emp_departmentId;
 
@@ -37,7 +39,7 @@ public class EmployeeView {
         System.out.print("Employee ID = ");
         this.emp_id = sc.next();
         if (m.pil == 1 || m.pil == 2) {
-            if (edao.getById(emp_id) == null) {
+            if (edao.getById(emp_id) != null) {
                 System.out.println("UPDATE DATA");
                 headerEmployee();
                 System.out.format(tbl, edao.getById(emp_id).getId(), edao.getById(emp_id).getFirst_name(),
@@ -57,7 +59,8 @@ public class EmployeeView {
             System.out.print("Phone Number = ");
             this.emp_phone_number = sc.next();
             System.out.print("Hire Date (yyyy-mm-dd)= ");
-            this.emp_hire_date = sc.next();
+            this.sDate = sc.next();
+            this.emp_hire_date = Date.valueOf(this.sDate);
             System.out.print("Job ID = ");
             this.emp_jobId = sc.next();
             System.out.print("Manager ID = ");
@@ -82,10 +85,6 @@ public class EmployeeView {
                 case 1:
                     System.out.println("== Insert ==");
                     InputData();
-                    edao.save(new Employee(emp_id, emp_first_name, emp_last_name,
-                            emp_email, emp_phone_number, emp_hire_date,
-                            emp_salary, emp_commisionPct, emp_jobId,
-                            emp_managerId, emp_departmentId));
                     break;
                 case 2:
                     System.out.println("== Update ==");
