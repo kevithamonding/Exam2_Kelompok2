@@ -131,6 +131,7 @@ public class EmployeeView {
                         InputData();
                         if (edao.getById(emp_id) == null) {
                             System.out.println("Data tidak ada!");
+                            break;
                         } else {
                             headerEmployee();
                             System.out.format(tbl, edao.getById(emp_id).getId(), edao.getById(emp_id).getFirst_name(),

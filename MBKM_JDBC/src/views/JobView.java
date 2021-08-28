@@ -86,6 +86,7 @@ public class JobView {
                         InputData();
                         if (jdao.getById(job_id) == null) {
                             System.out.println("Data tidak ada!");
+                            break;
                         } else {
                             System.out.println(jdao.getById(job_id).getJob_id() + " - "
                                     + jdao.getById(job_id).getJob_title());

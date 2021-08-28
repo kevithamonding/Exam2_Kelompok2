@@ -80,6 +80,7 @@ public class CountryView {
                         InputData();
                         if (cdao.getById(country_id) == null) {
                             System.out.println("Data tidak ada!");
+                            break;
                         } else {
                             System.out.println(cdao.getById(country_id).getId() + " - "
                                     + cdao.getById(country_id).getName() + " - "

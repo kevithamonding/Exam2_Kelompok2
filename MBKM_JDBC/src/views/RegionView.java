@@ -75,6 +75,7 @@ public class RegionView {
                         InputData();
                         if (rdao.getById(reg_id) == null) {
                             System.out.println("Data tidak ada!");
+                            break;
                         } else {
                             System.out.println(rdao.getById(reg_id).getId() + " - " + rdao.getById(reg_id).getName());
                         }

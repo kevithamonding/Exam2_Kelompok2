@@ -94,6 +94,7 @@ public class LocationView {
                         InputData();
                         if (ldao.getById(location_id) == null) {
                             System.out.println("Data tidak ada!");
+                            break;
                         } else {
                             System.out.println(ldao.getById(location_id).getLocation_id() + " - "
                                     + ldao.getById(location_id).getStreet_address() + " - "
