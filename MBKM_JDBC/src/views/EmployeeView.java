@@ -58,12 +58,6 @@ public class EmployeeView {
             this.emp_phone_number = sc.next();
             System.out.print("Hire Date (yyyy-mm-dd)= ");
             this.emp_hire_date = sc.next();
-//            this.emp_hire_date = Date.valueof(scDate);
-//            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(scDate);
-//            this.emp_hire_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
-//            String scDate = sc.next();
-//            SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-            // this.emp_hire_date = sc.next();
             System.out.print("Job ID = ");
             this.emp_jobId = sc.next();
             System.out.print("Manager ID = ");
@@ -88,7 +82,6 @@ public class EmployeeView {
                 case 1:
                     System.out.println("== Insert ==");
                     InputData();
-                    //Date hdate = Date.valueOf(emp_hire_date);
                     edao.save(new Employee(emp_id, emp_first_name, emp_last_name,
                             emp_email, emp_phone_number, emp_hire_date,
                             emp_salary, emp_commisionPct, emp_jobId,
