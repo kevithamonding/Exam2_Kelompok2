@@ -34,9 +34,9 @@ public class DepartmentView {
             }
             System.out.print("Department Name = ");
             this.department_name = sc.next();
-            System.out.println("Location ID = ");
+            System.out.print("Location ID = ");
             this.location_id = sc.next();
-            System.out.println("Manager ID = ");
+            System.out.print("Manager ID = ");
             this.manager_id = sc.next();
         }
     }
@@ -51,11 +51,13 @@ public class DepartmentView {
                     InputData();
                     ddao.save(new Department(department_id, department_name, location_id, manager_id));
                     break;
+                    
                 case 2:
                     System.out.println("== Update ==");
                     InputData();
                     ddao.save(new Department(department_id, department_name, location_id, manager_id));
                     break;
+                    
                 case 3:
                     System.out.println("== Delete ==");
                     InputData();
@@ -82,6 +84,7 @@ public class DepartmentView {
                         InputData();
                         if (ddao.getById(department_id) == null) {
                             System.out.println("Data tidak ada!");
+                            break;
                         } else {
                             System.out.println(ddao.getById(department_id).getDepartment_id() + " - "
                                     + ddao.getById(department_id).getDepartment_name());
