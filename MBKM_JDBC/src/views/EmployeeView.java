@@ -18,7 +18,7 @@ import tools.MBKM_JDBC;
  */
 public class EmployeeView {
 
-    Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
     DBConnection dbc = new DBConnection();
     EmployeeDAO edao = new EmployeeDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();

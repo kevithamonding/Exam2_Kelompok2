@@ -17,7 +17,7 @@ import tools.MBKM_JDBC;
  */
 public class CountryView {
 
-    Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
     DBConnection dbc = new DBConnection();
     CountryDAO cdao = new CountryDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();

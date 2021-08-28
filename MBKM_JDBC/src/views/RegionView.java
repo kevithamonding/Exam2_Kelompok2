@@ -17,7 +17,7 @@ import tools.MBKM_JDBC;
  */
 public class RegionView {
 
-    Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
     DBConnection dbc = new DBConnection();
     RegionDAO rdao = new RegionDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();

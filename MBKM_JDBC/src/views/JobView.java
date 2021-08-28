@@ -16,7 +16,7 @@ import tools.MBKM_JDBC;
  * @author rebel
  */
 public class JobView {
-    Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
     DBConnection dbc = new DBConnection();
     JobDAO jdao = new JobDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();
