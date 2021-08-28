@@ -5,11 +5,7 @@
  */
 package tools;
 
-import daos.CountryDAO;
-import daos.RegionDAO;
 import java.util.Scanner;
-import models.Country;
-import models.Region;
 import views.CountryView;
 import views.EmployeeView;
 import views.RegionView;
@@ -44,16 +40,9 @@ public class MBKM_JDBC {
     public static void main(String[] args) {
 
         DBConnection dbc = new DBConnection();
-        CountryDAO cdao = new CountryDAO(dbc.getConnection());
         Scanner sc = new Scanner(System.in);
 
         int piltabel;
-
-        //Test Connection
-        System.out.println(dbc.getConnection());
-
-        //Dependency Injection
-        RegionDAO rdao = new RegionDAO(dbc.getConnection());
 
         do {
             System.out.println("================= MENU UTAMA =================");
@@ -63,7 +52,7 @@ public class MBKM_JDBC {
             System.out.println("4. DEPARTMENT");
             System.out.println("5. JOB");
             System.out.println("6. EMPLOYEE");
-            System.out.println("7. Exit");
+            System.out.println("7. EXIT");
             System.out.println("==============================================");
             System.out.print("Masukkan pilihan : ");
             piltabel = sc.nextInt();
@@ -83,7 +72,7 @@ public class MBKM_JDBC {
                 case 7:
                     break;
                 default:
-                    throw new AssertionError();
+                    System.out.println("Pilihan Anda Salah");;
             }
         } while (piltabel != 7);
 
