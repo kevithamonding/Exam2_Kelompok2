@@ -24,9 +24,15 @@ public class EmployeeDAO {
         this.connection = connection;
     }
 
+    /**
+     * Method ini berfungsi untuk mengambil data dari dalam database dan
+     * ditampung dalam sebuah objek ArrayList
+     *
+     * @return objek yang berisi data yang telah diambil
+     */
     public List<Employee> getAll() {
         List<Employee> employees = new ArrayList<>();
-        
+
         try {
             ResultSet resultSet = connection
                     .prepareStatement("SELECT * FROM tb_employee")
@@ -44,7 +50,6 @@ public class EmployeeDAO {
                         resultSet.getString(9),
                         resultSet.getString(10),
                         resultSet.getString(11)
-                        
                 ));
             }
         } catch (Exception e) {
@@ -53,6 +58,16 @@ public class EmployeeDAO {
         return employees;
     }
 
+    /**
+     * Method ini berfungsi untuk memasukan data baru atau mengubah data yang
+     * sudah ada kedalam database dan akan dilakukan pengecekan, jika data sudah
+     * ada maka akan melakukan Update dan jika belum ada akan melakukan Insert
+     *
+     * @param employee untuk menentukan objek yang berisi nilai masukan untuk
+     * dimasukkan ke dalam database
+     * @return nilai berupa boolean, bernilai true jika berhasil dan false jika
+     * sebaliknya
+     */
     public boolean save(Employee employee) {
         try {
             boolean isInsert = getById(employee.getId()) == null;
@@ -82,6 +97,14 @@ public class EmployeeDAO {
         return false;
     }
 
+    /**
+     * Method ini berfungsi untuk menghapus data tertentu dari dalam database
+     * berdasarkan parameter id yang dimasukkan
+     *
+     * @param id untuk menentukan id mana yang datanya akan dihapus
+     * @return nilai berupa boolean, bernilai true jika berhasil dan false jika
+     * sebaliknya
+     */
     public boolean delete(String id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM tb_employee WHERE employee_id = ?");
@@ -94,6 +117,14 @@ public class EmployeeDAO {
         return false;
     }
 
+    /**
+     * Method ini berfungsi untuk mengambil data tertentu dari dalam database
+     * berdasarkan parameter id yang dimasukkan, dan ditampung dalam sebuah
+     * objek
+     *
+     * @param id untuk menentukan id mana yang datanya akan diambil
+     * @return objek yang berisi data (berdasarkan id) yang telah diambil
+     */
     public Employee getById(String id) {
         Employee employee = null;
         try {
@@ -120,7 +151,4 @@ public class EmployeeDAO {
         }
         return employee;
     }
-    
-    
-
 }

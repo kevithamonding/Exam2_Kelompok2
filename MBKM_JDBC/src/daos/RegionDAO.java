@@ -25,6 +25,12 @@ public class RegionDAO {
         this.connection = connection;
     }
 
+    /**
+     * Method ini berfungsi untuk mengambil data dari dalam database dan
+     * ditampung dalam sebuah objek ArrayList
+     *
+     * @return objek yang berisi data yang telah diambil
+     */
     public List<Region> getAll() {
         List<Region> regions = new ArrayList<>();
         try {
@@ -40,6 +46,16 @@ public class RegionDAO {
         return regions;
     }
 
+    /**
+     * Method ini berfungsi untuk memasukan data baru atau mengubah data yang
+     * sudah ada kedalam database dan akan dilakukan pengecekan, jika data sudah
+     * ada maka akan melakukan Update dan jika belum ada akan melakukan Insert
+     *
+     * @param region untuk menentukan objek yang berisi nilai masukan untuk
+     * dimasukkan ke dalam database
+     * @return nilai berupa boolean, bernilai true jika berhasil dan false jika
+     * sebaliknya
+     */
     public boolean save(Region region) {
         try {
             boolean isInsert = getById(region.getId()) == null;
@@ -58,6 +74,13 @@ public class RegionDAO {
         return false;
     }
 
+    /**
+     * Method ini berfungsi untuk menghapus data tertentu dari dalam database
+     * berdasarkan parameter id yang dimasukkan
+     * @param id untuk menentukan id mana yang datanya akan dihapus
+     * @return nilai berupa boolean, bernilai true jika berhasil dan false jika
+     * sebaliknya
+     */
     public boolean delete(int id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM tb_region WHERE region_id = ?");
@@ -70,6 +93,13 @@ public class RegionDAO {
         return false;
     }
 
+    /**
+     * Method ini berfungsi untuk mengambil data tertentu dari dalam database berdasarkan
+     * parameter id yang dimasukkan, dan ditampung dalam sebuah objek
+     *
+     * @param id untuk menentukan id mana yang datanya akan diambil
+     * @return objek yang berisi data (berdasarkan id) yang telah diambil
+     */
     public Region getById(int id) {
         Region region = null;
         try {
