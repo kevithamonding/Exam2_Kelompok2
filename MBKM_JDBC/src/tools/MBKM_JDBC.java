@@ -9,6 +9,9 @@ import java.util.Scanner;
 import views.CountryView;
 import views.EmployeeView;
 import views.RegionView;
+import views.JobView;
+import views.DepartmentView;
+import views.LocationView;
 
 /**
  *
@@ -67,6 +70,18 @@ public class MBKM_JDBC {
                 case 2:
                     CountryView country = new CountryView();
                     country.Logika();
+                    break;
+                case 3:
+                    LocationView location = new LocationView();
+                    location.Logika();
+                    break;
+                case 4:
+                    DepartmentView department = new DepartmentView();
+                    department.Logika();
+                    break;
+                case 5: 
+                    JobView job = new JobView();
+                    job.Logika();
                     break;
                 case 6:
                     EmployeeView employee = new EmployeeView();

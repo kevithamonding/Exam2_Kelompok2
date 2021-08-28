@@ -36,7 +36,7 @@ public class RegionView {
         System.out.print("Region ID = ");
         this.reg_id = sc.nextInt();
         if (m.pil == 1 || m.pil == 2) {
-            if (rdao.getById(reg_id) == null) {
+            if (rdao.getById(reg_id) != null) {
                 System.out.println("UPDATE DATA");
                 System.out.println(rdao.getById(reg_id).getId() + " - " + rdao.getById(reg_id).getName());
             }
