@@ -16,27 +16,33 @@ import tools.MBKM_JDBC;
  * @author rebel
  */
 public class JobView {
+
     Scanner sc = new Scanner(System.in).useDelimiter("\n");
     DBConnection dbc = new DBConnection();
     JobDAO jdao = new JobDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();
     String job_id, job_title;
     double min_salary, max_salary;
-    
+
     public void InputData() {
         System.out.print("Job ID = ");
-        this.job_id= sc.next();
+        this.job_id = sc.next();
         if (m.pil == 1 || m.pil == 2) {
+            if (jdao.getById(job_id) != null) {
+                System.out.println("UPDATE DATA");
+                System.out.println(jdao.getById(job_id).getJob_id() + " - "
+                        + jdao.getById(job_id).getJob_title());
+            }
             System.out.print("Job Name = ");
             this.job_title = sc.next();
-            System.out.println("Minimal Salary = ");
+            System.out.print("Minimal Salary = ");
             this.min_salary = sc.nextDouble();
-            System.out.println("Maximal Salary = ");
+            System.out.print("Maximal Salary = ");
             this.max_salary = sc.nextDouble();
-            
+
         }
     }
-    
+
     public void Logika() {
 
         do {
@@ -47,36 +53,34 @@ public class JobView {
                     InputData();
                     jdao.save(new Job(job_id, job_title, min_salary, max_salary));
                     break;
-                    
+
                 case 2:
                     System.out.println("== Update ==");
                     InputData();
                     jdao.save(new Job(job_id, job_title, min_salary, max_salary));
                     break;
-                    
+
                 case 3:
-                System.out.println("== Delete ==");
-                InputData();
-                System.out.println(jdao.getById(job_id).getJob_id()+ " - "
-                        + jdao.getById(job_id).getJob_title());
-                System.out.print("Apakah ingin dihapus? (ya/tidak)");
-                String pil2 = sc.next();
-//                rdao.delete(reg_id);
-                if (pil2.equalsIgnoreCase("ya") || pil2.equalsIgnoreCase("Ya")) {
-//                    rdao.delete(reg_id);
-                    System.out.println(
-                            jdao.delete(job_id)
-                            ? "Delete Berhasil" : "Delete Gagal"
-                    );
-                }
+                    System.out.println("== Delete ==");
+                    InputData();
+                    System.out.println(jdao.getById(job_id).getJob_id() + " - "
+                            + jdao.getById(job_id).getJob_title());
+                    System.out.print("Apakah ingin dihapus? (ya/tidak)");
+                    String pil2 = sc.next();
+                    if (pil2.equalsIgnoreCase("ya") || pil2.equalsIgnoreCase("Ya")) {
+                        System.out.println(
+                                jdao.delete(job_id)
+                                ? "Delete Berhasil" : "Delete Gagal"
+                        );
+                    }
                     break;
-                    
+
                 case 4:
                     for (Job j : jdao.getAll()) {
                         System.out.println(j.getJob_id() + " - " + j.getJob_title());
                     }
                     break;
-                    
+
                 case 5:
                     do {
                         InputData();
@@ -88,12 +92,11 @@ public class JobView {
                         }
                     } while (jdao.getById(job_id) == null);
                     break;
-                    
+
                 default:
                     System.out.println("Pilihan Anda Salah");
-                }
-        }while (m.pil != 6);
+            }
+        } while (m.pil != 6);
     }
-    
+
 }
-    

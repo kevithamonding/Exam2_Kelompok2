@@ -34,7 +34,6 @@ public class RegionView {
             }
             System.out.print("Region Name = ");
             this.reg_name = sc.next();
-            rdao.save(new Region(reg_id, reg_name));
         }
     }
 
@@ -45,10 +44,12 @@ public class RegionView {
                 case 1:
                     System.out.println("== Insert ==");
                     InputData();
+                    rdao.save(new Region(reg_id, reg_name));
                     break;
                 case 2:
                     System.out.println("== Update ==");
                     InputData();
+                    rdao.save(new Region(reg_id, reg_name));
                     break;
                 case 3:
                     System.out.println("== Delete ==");

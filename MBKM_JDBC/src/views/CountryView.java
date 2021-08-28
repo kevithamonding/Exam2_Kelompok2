@@ -38,7 +38,6 @@ public class CountryView {
             this.country_name = sc.next();
             System.out.print("Region ID = ");
             this.region_id = sc.nextInt();
-            cdao.save(new Country(country_id, country_name, region_id));
         }
     }
 
@@ -49,10 +48,12 @@ public class CountryView {
                 case 1:
                     System.out.println("== Insert ==");
                     InputData();
+                    cdao.save(new Country(country_id, country_name, region_id));
                     break;
                 case 2:
                     System.out.println("== Update ==");
                     InputData();
+                    cdao.save(new Country(country_id, country_name, region_id));
                     break;
                 case 3:
                     System.out.println("== Delete ==");

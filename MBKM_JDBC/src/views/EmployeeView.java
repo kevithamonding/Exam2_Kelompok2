@@ -71,10 +71,6 @@ public class EmployeeView {
             this.emp_salary = sc.nextDouble();
             System.out.print("Commision = ");
             this.emp_commisionPct = sc.nextDouble();
-            edao.save(new Employee(emp_id, emp_first_name, emp_last_name,
-                    emp_email, emp_phone_number, emp_hire_date,
-                    emp_salary, emp_commisionPct, emp_jobId,
-                    emp_managerId, emp_departmentId));
         }
     }
 
@@ -85,10 +81,18 @@ public class EmployeeView {
                 case 1:
                     System.out.println("== Insert ==");
                     InputData();
+                    edao.save(new Employee(emp_id, emp_first_name, emp_last_name,
+                            emp_email, emp_phone_number, emp_hire_date,
+                            emp_salary, emp_commisionPct, emp_jobId,
+                            emp_managerId, emp_departmentId));
                     break;
                 case 2:
                     System.out.println("== Update ==");
                     InputData();
+                    edao.save(new Employee(emp_id, emp_first_name, emp_last_name,
+                            emp_email, emp_phone_number, emp_hire_date,
+                            emp_salary, emp_commisionPct, emp_jobId,
+                            emp_managerId, emp_departmentId));
                     break;
                 case 3:
                     System.out.println("== Delete ==");
