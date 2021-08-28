@@ -5,9 +5,9 @@
  */
 package views;
 
-import daos.RegionDAO;
+import daos.CountryDAO;
 import java.util.Scanner;
-import models.Region;
+import models.Country;
 import tools.DBConnection;
 import tools.MBKM_JDBC;
 
@@ -15,34 +15,30 @@ import tools.MBKM_JDBC;
  *
  * @author Asus
  */
-public class RegionView {
+public class CountryView {
 
     Scanner sc = new Scanner(System.in);
     DBConnection dbc = new DBConnection();
-    RegionDAO rdao = new RegionDAO(dbc.getConnection());
+    CountryDAO cdao = new CountryDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();
-    int reg_id;
-    String reg_name;
-
-    public RegionView() {
-    }
-
-    public RegionView(int reg_id, String reg_name) {
-        this.reg_id = reg_id;
-        this.reg_name = reg_name;
-    }
+    int region_id;
+    String country_id, country_name;
 
     public void InputData() {
-        System.out.print("Region ID = ");
-        this.reg_id = sc.nextInt();
+        System.out.print("Country ID = ");
+        this.country_id = sc.next();
         if (m.pil == 1 || m.pil == 2) {
-            if (rdao.getById(reg_id) == null) {
+            if (cdao.getById(country_id) != null) {
                 System.out.println("UPDATE DATA");
-                System.out.println(rdao.getById(reg_id).getId() + " - " + rdao.getById(reg_id).getName());
+                System.out.println(cdao.getById(country_id).getId() + " - "
+                        + cdao.getById(country_id).getName() + " - "
+                        + cdao.getById(country_id).getRegionId());
             }
-            System.out.print("Region Name = ");
-            this.reg_name = sc.next();
-            rdao.save(new Region(reg_id, reg_name));
+            System.out.print("Country Name = ");
+            this.country_name = sc.next();
+            System.out.print("Region ID = ");
+            this.region_id = sc.nextInt();
+            cdao.save(new Country(country_id, country_name, region_id));
         }
     }
 
@@ -61,31 +57,34 @@ public class RegionView {
                 case 3:
                     System.out.println("== Delete ==");
                     InputData();
-                    System.out.println(rdao.getById(reg_id).getId() + " - "
-                            + rdao.getById(reg_id).getName());
+                    System.out.println(cdao.getById(country_id).getId() + " - "
+                            + cdao.getById(country_id).getName() + " - "
+                            + cdao.getById(country_id).getRegionId());
                     System.out.print("Apakah ingin dihapus? (ya/tidak) ");
                     String pil2 = sc.next();
                     if (pil2.equalsIgnoreCase("ya")) {
                         System.out.println(
-                                rdao.delete(reg_id)
+                                cdao.delete(country_id)
                                 ? "Delete Berhasil" : "Delete Gagal"
                         );
                     }
                     break;
                 case 4:
-                    for (Region r : rdao.getAll()) {
-                        System.out.println(r.getId() + " - " + r.getName());
+                    for (Country c : cdao.getAll()) {
+                        System.out.println(c.getId() + " - " + c.getName() + " - " + c.getRegionId());
                     }
                     break;
                 case 5:
                     do {
                         InputData();
-                        if (rdao.getById(reg_id) == null) {
+                        if (cdao.getById(country_id) == null) {
                             System.out.println("Data tidak ada!");
                         } else {
-                            System.out.println(rdao.getById(reg_id).getId() + " - " + rdao.getById(reg_id).getName());
+                            System.out.println(cdao.getById(country_id).getId() + " - "
+                                    + cdao.getById(country_id).getName() + " - "
+                                    + cdao.getById(country_id).getRegionId());
                         }
-                    } while (rdao.getById(reg_id) == null);
+                    } while (cdao.getById(country_id) == null);
                     break;
                 case 6:
                     break;
@@ -94,5 +93,4 @@ public class RegionView {
             }
         } while (m.pil != 6);
     }
-
 }

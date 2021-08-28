@@ -21,6 +21,10 @@ public class Region {
         this.name = regionName;
     }
 
+    public Region(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Region{" + "regionId=" + id + ", regionName=" + name + '}';

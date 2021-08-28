@@ -5,9 +5,9 @@
  */
 package tools;
 
-import daos.RegionDAO;
 import java.util.Scanner;
-import models.Region;
+import views.CountryView;
+import views.EmployeeView;
 import views.RegionView;
 
 /**
@@ -44,12 +44,6 @@ public class MBKM_JDBC {
 
         int piltabel;
 
-        //Test Connection
-        System.out.println(dbc.getConnection());
-
-        //Dependency Injection
-        RegionDAO rdao = new RegionDAO(dbc.getConnection());
-
         do {
             System.out.println("================= MENU UTAMA =================");
             System.out.println("1. REGION");
@@ -58,7 +52,7 @@ public class MBKM_JDBC {
             System.out.println("4. DEPARTMENT");
             System.out.println("5. JOB");
             System.out.println("6. EMPLOYEE");
-            System.out.println("7. Exit");
+            System.out.println("7. EXIT");
             System.out.println("==============================================");
             System.out.print("Masukkan pilihan : ");
             piltabel = sc.nextInt();
@@ -70,13 +64,15 @@ public class MBKM_JDBC {
                     region.Logika();
                     break;
                 case 2:
-                    break;
+                    CountryView country = new CountryView();
+                    country.Logika();
                 case 6:
-                    break;
+                    EmployeeView employee = new EmployeeView();
+                    employee.Logika();
                 case 7:
                     break;
                 default:
-                    throw new AssertionError();
+                    System.out.println("Pilihan Anda Salah");;
             }
         } while (piltabel != 7);
 
