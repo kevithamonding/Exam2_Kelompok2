@@ -67,9 +67,11 @@ public class MBKM_JDBC {
                 case 2:
                     CountryView country = new CountryView();
                     country.Logika();
+                    break;
                 case 6:
                     EmployeeView employee = new EmployeeView();
                     employee.Logika();
+                    break;
                 case 7:
                     break;
                 default:
