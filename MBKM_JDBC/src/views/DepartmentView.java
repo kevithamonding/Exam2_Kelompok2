@@ -92,7 +92,10 @@ public class DepartmentView {
                         }
                     } while (ddao.getById(department_id) == null);
                     break;
-
+                
+                case 6:
+                    break;
+                    
                 default:
                     System.out.println("Pilihan Anda Salah");
             }

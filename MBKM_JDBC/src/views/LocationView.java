@@ -104,6 +104,9 @@ public class LocationView {
                         }
                     } while (ldao.getById(location_id) == null);
                     break;
+                    
+                case 6:
+                    break;
 
                 default:
                     System.out.println("Pilihan Anda Salah");

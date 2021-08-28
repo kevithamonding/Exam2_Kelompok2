@@ -93,6 +93,9 @@ public class JobView {
                         }
                     } while (jdao.getById(job_id) == null);
                     break;
+                    
+                case 6:
+                    break;
 
                 default:
                     System.out.println("Pilihan Anda Salah");
