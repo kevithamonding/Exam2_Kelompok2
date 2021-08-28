@@ -36,25 +36,27 @@ public class RegionView {
         System.out.print("Region ID = ");
         this.reg_id = sc.nextInt();
         if (m.pil == 1 || m.pil == 2) {
+            if (rdao.getById(reg_id) == null) {
+                System.out.println("UPDATE DATA");
+                System.out.println(rdao.getById(reg_id).getId() + " - " + rdao.getById(reg_id).getName());
+            }
             System.out.print("Region Name = ");
             this.reg_name = sc.next();
+            rdao.save(new Region(reg_id, reg_name));
         }
     }
 
     public void Logika() {
-
         do {
             m.Menu();
             switch (m.pil) {
                 case 1:
                     System.out.println("== Insert ==");
                     InputData();
-                    rdao.save(new Region(reg_id, reg_name));
                     break;
                 case 2:
                     System.out.println("== Update ==");
                     InputData();
-                    rdao.save(new Region(reg_id, reg_name));
                     break;
                 case 3:
                     System.out.println("== Delete ==");
@@ -81,8 +83,7 @@ public class RegionView {
                         if (rdao.getById(reg_id) == null) {
                             System.out.println("Data tidak ada!");
                         } else {
-                            System.out.println(rdao.getById(reg_id).getId() + " - "
-                                    + rdao.getById(reg_id).getName());
+                            System.out.println(rdao.getById(reg_id).getId() + " - " + rdao.getById(reg_id).getName());
                         }
                     } while (rdao.getById(reg_id) == null);
                     break;
@@ -90,8 +91,8 @@ public class RegionView {
                     break;
                 default:
                     System.out.println("Pilihan Anda Salah");
-                }
-        }while (m.pil != 6);
+            }
+        } while (m.pil != 6);
     }
-    
+
 }

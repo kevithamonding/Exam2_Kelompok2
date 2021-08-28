@@ -31,13 +31,23 @@ public class EmployeeView {
         System.out.format("+------------+----------------+----------------+------------------+--------------+------------+--------+---------------+------------+----------------------+----------------------+%n");
         System.out.format("| EmployeeId | First Name     | Last Name      | Email            | Phone Number | Hire Date  | Job ID | Department ID | Manager ID | Salary (Rp.)         | Commision (Rp.)      |%n");
         System.out.format("+------------+----------------+----------------+------------------+--------------+------------+--------+---------------+------------+----------------------+----------------------+%n");
-
     }
 
     public void InputData() {
         System.out.print("Employee ID = ");
         this.emp_id = sc.next();
         if (m.pil == 1 || m.pil == 2) {
+            if (edao.getById(emp_id) == null) {
+                System.out.println("UPDATE DATA");
+                headerEmployee();
+                System.out.format(tbl, edao.getById(emp_id).getId(), edao.getById(emp_id).getFirst_name(),
+                        edao.getById(emp_id).getLast_name(), edao.getById(emp_id).getEmail(),
+                        edao.getById(emp_id).getPhone_number(), edao.getById(emp_id).getHire_date(),
+                        edao.getById(emp_id).getJobId(), edao.getById(emp_id).getDepartmentId(),
+                        edao.getById(emp_id).getManagerId(), edao.getById(emp_id).getSalary(),
+                        edao.getById(emp_id).getCommisionPct());
+                System.out.format("+------------+----------------+----------------+------------------+--------------+------------+--------+---------------+------------+----------------------+----------------------+%n");
+            }
             System.out.print("First Name = ");
             this.emp_first_name = sc.next();
             System.out.print("Last Name = ");
@@ -64,6 +74,10 @@ public class EmployeeView {
             this.emp_salary = sc.nextDouble();
             System.out.print("Commision = ");
             this.emp_commisionPct = sc.nextDouble();
+            edao.save(new Employee(emp_id, emp_first_name, emp_last_name,
+                    emp_email, emp_phone_number, emp_hire_date,
+                    emp_salary, emp_commisionPct, emp_jobId,
+                    emp_managerId, emp_departmentId));
         }
     }
 
@@ -83,20 +97,19 @@ public class EmployeeView {
                 case 2:
                     System.out.println("== Update ==");
                     InputData();
-                    edao.save(new Employee(emp_id, emp_first_name, emp_last_name,
-                            emp_email, emp_phone_number, emp_hire_date,
-                            emp_salary, emp_commisionPct, emp_jobId,
-                            emp_managerId, emp_departmentId));
                     break;
                 case 3:
                     System.out.println("== Delete ==");
                     InputData();
                     System.out.println("Employee ID: " + edao.getById(emp_id).getId() + "\nName: "
                             + edao.getById(emp_id).getFirst_name() + " " + edao.getById(emp_id).getLast_name()
-                            + "\nEmail: " + edao.getById(emp_id).getEmail() + "\nPhone Number: " + edao.getById(emp_id).getPhone_number()
+                            + "\nEmail: " + edao.getById(emp_id).getEmail() + "\nPhone Number: "
+                            + edao.getById(emp_id).getPhone_number()
                             + "\nHire Date: " + edao.getById(emp_id).getHire_date()
-                            + "\nJob ID: " + edao.getById(emp_id).getJobId() + "\nDepartment ID: " + edao.getById(emp_id).getDepartmentId()
-                            + "\nManager ID: " + edao.getById(emp_id).getManagerId() + "\nSalary: Rp. " + edao.getById(emp_id).getSalary()
+                            + "\nJob ID: " + edao.getById(emp_id).getJobId() + "\nDepartment ID: "
+                            + edao.getById(emp_id).getDepartmentId()
+                            + "\nManager ID: " + edao.getById(emp_id).getManagerId() + "\nSalary: Rp. "
+                            + edao.getById(emp_id).getSalary()
                             + "\nCommision: Rp. " + edao.getById(emp_id).getCommisionPct());
                     System.out.print("Apakah ingin dihapus? (ya/tidak) ");
                     String pil2 = sc.next();
@@ -110,7 +123,9 @@ public class EmployeeView {
                 case 4:
                     headerEmployee();
                     for (Employee e : edao.getAll()) {
-                        System.out.format(tbl, e.getId(), e.getFirst_name(), e.getLast_name(), e.getEmail(), e.getPhone_number(), e.getHire_date(), e.getJobId(), e.getDepartmentId(), e.getManagerId(), e.getSalary(), e.getCommisionPct());
+                        System.out.format(tbl, e.getId(), e.getFirst_name(), e.getLast_name(), e.getEmail(),
+                                e.getPhone_number(), e.getHire_date(), e.getJobId(), e.getDepartmentId(),
+                                e.getManagerId(), e.getSalary(), e.getCommisionPct());
                     }
                     System.out.format("+------------+----------------+----------------+------------------+--------------+------------+--------+---------------+------------+----------------------+----------------------+%n");
 
@@ -122,7 +137,12 @@ public class EmployeeView {
                             System.out.println("Data tidak ada!");
                         } else {
                             headerEmployee();
-                            System.out.format(tbl, edao.getById(emp_id).getId(), edao.getById(emp_id).getFirst_name(), edao.getById(emp_id).getLast_name(), edao.getById(emp_id).getEmail(), edao.getById(emp_id).getPhone_number(), edao.getById(emp_id).getHire_date(), edao.getById(emp_id).getJobId(), edao.getById(emp_id).getDepartmentId(), edao.getById(emp_id).getManagerId(), edao.getById(emp_id).getSalary(), edao.getById(emp_id).getCommisionPct());
+                            System.out.format(tbl, edao.getById(emp_id).getId(), edao.getById(emp_id).getFirst_name(),
+                                    edao.getById(emp_id).getLast_name(), edao.getById(emp_id).getEmail(),
+                                    edao.getById(emp_id).getPhone_number(), edao.getById(emp_id).getHire_date(),
+                                    edao.getById(emp_id).getJobId(), edao.getById(emp_id).getDepartmentId(),
+                                    edao.getById(emp_id).getManagerId(), edao.getById(emp_id).getSalary(),
+                                    edao.getById(emp_id).getCommisionPct());
                             System.out.format("+------------+----------------+----------------+------------------+--------------+------------+--------+---------------+------------+----------------------+----------------------+%n");
                         }
                     } while (edao.getById(emp_id) == null);
