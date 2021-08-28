@@ -23,6 +23,11 @@ public class LocationDAO {
         this.connection = connection;
     }
     
+     /**
+     * Method ini bertujuan untuk menampilkan seluruh data yang terdapat di dalam tb_location
+     * @return method ini akan mengembalikan nilai berupa location yang merupakan array list
+     */
+    
       public List<Location> getAll(){
         List<Location> location = new ArrayList<>();
         try {
@@ -38,6 +43,11 @@ public class LocationDAO {
         return location;
     }
       
+        /**
+     * Method ini bertujuan untuk memasukkan data kedalam database tb_location
+     * @param location untuk memanggil objek location sebagai parameter untuk menginput data
+     * @return method ini akan mengembalikan tipe data boolean berupa true apabila insert berhasil dan false apabila insert gagal
+     */
       public boolean insert(Location location){
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO tb_location (location_id, street_address, postal_code, city, state_province, country_id) VALUES (?,?,?,?,?,?)");
@@ -55,9 +65,17 @@ public class LocationDAO {
         return false;
     }
       
+      /**
+      * Method ini bertujuan untuk melakukan update/edit data yang telah diinputkan sebelumnya 
+      * dan kemudian kembali disimpan di dalam database tb_location
+      * @param id untuk menentukan id yang akan menjadi parameter ketika ingin mengupdate data
+      * @param location untuk memanggil objek location sebagai parameter untuk mengupdate data
+      * @return method ini akan mengembalikan tipe data boolean berupa true apabila update berhasil dan false apabila update gagal
+      */
+      
         public boolean update(String id, Location location){
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE tb_location SET location_id = ?, stress_address = ?, postal_code = ?, city = ?, state_province = ?, country_id = ? WHERE location_id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE tb_location SET location_id = ?, street_address = ?, postal_code = ?, city = ?, state_province = ?, country_id = ? WHERE location_id = ?");
             preparedStatement.setString(1, location.getLocation_id());
             preparedStatement.setString(2, location.getStreet_address());
             preparedStatement.setString(3, location.getPostal_code());
@@ -73,6 +91,11 @@ public class LocationDAO {
         return false;
         }
           
+         /**
+      * Method ini bertujuan untuk menghapus data yang telah tersimpan di database tb_location berdasarkan id nya
+      * @param id untuk menentukan id yang akan menjadi parameter ketika ingin delete data
+      * @return method ini akan mengembalikan tipe data boolean berupa true apabila delete berhasil dan false apabila delete gagal
+      */
         public boolean delete(String id){
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM tb_location WHERE location_id = ?");
@@ -85,13 +108,20 @@ public class LocationDAO {
         return false;
       }
         
+       /**
+       * Method ini bertujuan untuk memasukkan data kedalam database atau mengubah data yang telah ada,
+       * method ini akan melakukan pengecekan berdasarkan parameter yang diinputkan, 
+       * apabila data belum tersedia maka akan dilakukan insert, apabila telah tersedia akan dilakukan update
+       * @param location untuk memanggil objek location sebagai parameter untuk insert/update data
+       * @return method ini akan mengembalikan tipe data boolean berupa true apabila insert/update berhasil dan false apabila insert/update gagal
+       */
         public boolean save(Location location) {
         try {
             boolean isInsert = getById(location.getLocation_id()) == null;
             System.out.println(isInsert ? "Insert Berhasil" : "Update Berhasil");
             String query = isInsert
-                    ? "INSERT INTO tb_location (stress_address, postal_code, city, state_province, country_id, location_id) VALUES (?,?,?,?,?,?)"
-                    : "UPDATE tb_location SET stress_address = ?, postal_code = ?, city = ?, state_province = ?, country_id = ? WHERE location_id = ?";
+                    ? "INSERT INTO tb_location (street_address, postal_code, city, state_province, country_id, location_id) VALUES (?,?,?,?,?,?)"
+                    : "UPDATE tb_location SET street_address = ?, postal_code = ?, city = ?, state_province = ?, country_id = ? WHERE location_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, location.getStreet_address());
             preparedStatement.setString(2, location.getPostal_code());
@@ -107,6 +137,11 @@ public class LocationDAO {
         return false;
     }
         
+          /**
+          * Method ini bertujuan untuk menampilkan data pada tb_location berdasarkan id yang diinputkan
+          * @param id untuk menentukan id yang akan menjadi parameter ketika ingin select data
+          * @return method ini akan mengembalikan nilai berupa seluruh data location berdasarkan id yang diinputkan
+          */
           public Location getById(String id) {
         Location location = null;
         try {

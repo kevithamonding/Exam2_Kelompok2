@@ -22,7 +22,10 @@ public class JobDAO {
     public JobDAO(Connection connection) {
         this.connection = connection;
     }
-    
+    /**
+     * Method ini bertujuan untuk menampilkan seluruh data yang terdapat di dalam tb_job
+     * @return method ini akan mengembalikan nilai berupa job yang merupakan array list
+     */
     public List<Job> getAll(){
         List<Job> job = new ArrayList<>();
         try {
@@ -38,6 +41,11 @@ public class JobDAO {
         return job;
     }
     
+    /**
+     * Method ini bertujuan untuk memasukkan data kedalam database tb_job
+     * @param job untuk memanggil objek job sebagai parameter untuk menginput data
+     * @return method ini akan mengembalikan tipe data boolean berupa true apabila insert berhasil dan false apabila insert gagal
+     */
      public boolean insert(Job job){
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO tb_job (job_id, job_title, min_salary, max_salary) VALUES (?,?,?,?)");
@@ -52,7 +60,13 @@ public class JobDAO {
         }
         return false;
     }
-     
+     /**
+      * Method ini bertujuan untuk melakukan update/edit data yang telah diinputkan sebelumnya 
+      * dan kemudian kembali disimpan di dalam database tb_job
+      * @param id untuk menentukan id yang akan menjadi parameter ketika ingin mengupdate data
+      * @param job untuk memanggil objek job sebagai parameter untuk mengupdate data
+      * @return method ini akan mengembalikan tipe data boolean berupa true apabila update berhasil dan false apabila update gagal
+      */
      public boolean update(String id, Job job){
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE tb_job SET job_id = ?, job_title = ?, min_salary = ?, max_salary = ? WHERE job_id = ?");
@@ -69,6 +83,12 @@ public class JobDAO {
         return false;
         }
      
+     /**
+      * Method ini bertujuan untuk menghapus data yang telah tersimpan di database tb_job berdasarkan id nya
+      * @param id untuk menentukan id yang akan menjadi parameter ketika ingin delete data
+      * @return method ini akan mengembalikan tipe data boolean berupa true apabila delete berhasil dan false apabila delete gagal
+      */
+     
       public boolean delete(String id){
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM tb_job WHERE job_id = ?");
@@ -80,6 +100,14 @@ public class JobDAO {
         }
         return false;
       }
+      
+      /**
+       * Method ini bertujuan untuk memasukkan data kedalam database atau mengubah data yang telah ada,
+       * method ini akan melakukan pengecekan berdasarkan parameter yang diinputkan, 
+       * apabila data belum tersedia maka akan dilakukan insert, apabila telah tersedia akan dilakukan update
+       * @param job untuk memanggil objek job sebagai parameter untuk insert/update data
+       * @return method ini akan mengembalikan tipe data boolean berupa true apabila insert/update berhasil dan false apabila insert/update gagal
+       */
       
          public boolean save(Job job) {
         try {
@@ -101,10 +129,15 @@ public class JobDAO {
         return false;
     }
         
+         /**
+          * Method ini bertujuan untuk menampilkan data pada tb_job berdasarkan id yang diinputkan
+          * @param id untuk menentukan id yang akan menjadi parameter ketika ingin select data
+          * @return method ini akan mengembalikan nilai berupa seluruh data job berdasarkan id yang diinputkan
+          */
         public Job getById(String id) {
         Job job = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT *FROM tb_job WHERE job_id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM tb_job WHERE job_id=?");
             preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

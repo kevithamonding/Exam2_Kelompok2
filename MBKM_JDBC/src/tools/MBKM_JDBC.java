@@ -8,13 +8,16 @@ package tools;
 import daos.RegionDAO;
 import daos.JobDAO;
 import daos.DepartmentDAO;
+import daos.LocationDAO;
 import java.util.Scanner;
 import models.Region;
 import models.Job;
 import models.Department;
+import models.Location;
 import views.RegionView;
 import views.JobView;
 import views.DepartmentView;
+import views.LocationView;
 
 /**
  *
@@ -72,7 +75,8 @@ public class MBKM_JDBC {
 //          DepartmentView department = new DepartmentView();
 //          department.Logika();
           
-            
+            LocationView location = new LocationView();
+            location.Logika();
     }
 
 }
