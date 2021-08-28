@@ -20,18 +20,6 @@ public class LocationView {
     LocationDAO ldao = new LocationDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();
     String location_id, street_address, postal_code, city, state_province, country_id;
-
-    public LocationView() {
-    }
-
-    public LocationView(String location_id, String street_address, String postal_code, String city, String state_province, String country_id) {
-        this.location_id = location_id;
-        this.street_address = street_address;
-        this.postal_code = postal_code;
-        this.city = city;
-        this.state_province = state_province;
-        this.country_id = country_id;
-    }
     
     public void InputData() {
         System.out.print("Location ID = ");

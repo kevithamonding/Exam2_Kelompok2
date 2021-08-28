@@ -22,16 +22,6 @@ public class JobView {
     MBKM_JDBC m = new MBKM_JDBC();
     String job_id, job_title;
     double min_salary, max_salary;
-
-    public JobView() {
-    }
-
-    public JobView(String job_id, String job_title, double min_salary, double max_salary) {
-        this.job_id = job_id;
-        this.job_title = job_title;
-        this.min_salary = min_salary;
-        this.max_salary = max_salary;
-    }
     
     public void InputData() {
         System.out.print("Job ID = ");

@@ -24,14 +24,6 @@ public class RegionView {
     int reg_id;
     String reg_name;
 
-    public RegionView() {
-    }
-
-    public RegionView(int reg_id, String reg_name) {
-        this.reg_id = reg_id;
-        this.reg_name = reg_name;
-    }
-
     public void InputData() {
         System.out.print("Region ID = ");
         this.reg_id = sc.nextInt();

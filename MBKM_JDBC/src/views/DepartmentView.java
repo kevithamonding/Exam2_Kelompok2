@@ -21,16 +21,6 @@ public class DepartmentView {
     DepartmentDAO ddao = new DepartmentDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();
     String department_id, department_name, location_id, manager_id;
-
-    public DepartmentView() {
-    }
-
-    public DepartmentView(String department_id, String department_name, String location_id, String manager_id) {
-        this.department_id = department_id;
-        this.department_name = department_name;
-        this.location_id = location_id;
-        this.manager_id = manager_id;
-    }
     
     public void InputData() {
         System.out.print("Department ID = ");
