@@ -84,7 +84,8 @@ public class LocationView {
 
                 case 4:
                     for (Location l : ldao.getAll()) {
-                        System.out.println(l.getLocation_id() + " - " + l.getStreet_address() + " - " + l.getPostal_code() + " - " + l.getCity());
+                        System.out.println(l.getLocation_id() + " - " + l.getStreet_address() + " - " + l.getPostal_code() + " - " 
+                        + l.getCity() + " - " + l.getState_province() + " - " + "Location ID: " + l.getLocation_id());
                     }
                     break;
 

@@ -77,7 +77,7 @@ public class JobView {
 
                 case 4:
                     for (Job j : jdao.getAll()) {
-                        System.out.println(j.getJob_id() + " - " + j.getJob_title());
+                        System.out.println(j.getJob_id() + " - " + j.getJob_title() + " - " +  "Min Salary: " +j.getMin_salary() + " - " + "Max Salary: " +j.getMax_salary());
                     }
                     break;
 

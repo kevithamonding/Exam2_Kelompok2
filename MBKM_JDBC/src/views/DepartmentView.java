@@ -75,7 +75,8 @@ public class DepartmentView {
 
                 case 4:
                     for (Department d : ddao.getAll()) {
-                        System.out.println(d.getDepartment_id() + " - " + d.getDepartment_name());
+                        System.out.println(d.getDepartment_id() + " - " + d.getDepartment_name() + " - " + "Location ID: " + d.getLocation_id() + 
+                        " - " + "Manager ID: "+ d.getManager_id());
                     }
                     break;
 
