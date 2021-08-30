@@ -97,16 +97,14 @@ public class EmployeeView {
                 case 3:
                     System.out.println("== Delete ==");
                     InputData();
-                    System.out.println("Employee ID: " + edao.getById(emp_id).getId() + "\nName: "
-                            + edao.getById(emp_id).getFirst_name() + " " + edao.getById(emp_id).getLast_name()
-                            + "\nEmail: " + edao.getById(emp_id).getEmail() + "\nPhone Number: "
-                            + edao.getById(emp_id).getPhone_number()
-                            + "\nHire Date: " + edao.getById(emp_id).getHire_date()
-                            + "\nJob ID: " + edao.getById(emp_id).getJobId() + "\nDepartment ID: "
-                            + edao.getById(emp_id).getDepartmentId()
-                            + "\nManager ID: " + edao.getById(emp_id).getManagerId() + "\nSalary: Rp. "
-                            + edao.getById(emp_id).getSalary()
-                            + "\nCommision: Rp. " + edao.getById(emp_id).getCommisionPct());
+                    headerEmployee();
+                    System.out.format(tbl, edao.getById(emp_id).getId(), edao.getById(emp_id).getFirst_name(),
+                            edao.getById(emp_id).getLast_name(), edao.getById(emp_id).getEmail(),
+                            edao.getById(emp_id).getPhone_number(), edao.getById(emp_id).getHire_date(),
+                            edao.getById(emp_id).getJobId(), edao.getById(emp_id).getDepartmentId(),
+                            edao.getById(emp_id).getManagerId(), edao.getById(emp_id).getSalary(),
+                            edao.getById(emp_id).getCommisionPct());
+                    System.out.format("+------------+----------------+----------------+------------------+--------------+------------+--------+---------------+------------+----------------------+----------------------+%n");
                     System.out.print("Apakah ingin dihapus? (ya/tidak) ");
                     String pil2 = sc.next();
                     if (pil2.equalsIgnoreCase("ya")) {

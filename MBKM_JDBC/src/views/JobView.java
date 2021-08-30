@@ -21,8 +21,16 @@ public class JobView {
     DBConnection dbc = new DBConnection();
     JobDAO jdao = new JobDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();
-    String job_id, job_title;
+    String job_id, job_title, tbl;
     double min_salary, max_salary;
+
+    public void headerJob() {
+        this.tbl = "| %-8s | %-22s | %-16s | %-16s |%n";
+
+        System.out.format("+----------+------------------------+------------------+------------------+%n");
+        System.out.format("| JobId    | Job Title              | Min. Salary(Rp.) | Max. Salary(Rp.) |%n");
+        System.out.format("+----------+------------------------+------------------+------------------+%n");
+    }
 
     public void InputData() {
         System.out.print("Job ID = ");
@@ -30,8 +38,10 @@ public class JobView {
         if (m.pil == 1 || m.pil == 2) {
             if (jdao.getById(job_id) != null) {
                 System.out.println("UPDATE DATA");
-                System.out.println(jdao.getById(job_id).getJob_id() + " - "
-                        + jdao.getById(job_id).getJob_title());
+                headerJob();
+                System.out.format(tbl, jdao.getById(job_id).getJob_id(), jdao.getById(job_id).getJob_title(),
+                        jdao.getById(job_id).getMax_salary(), jdao.getById(job_id).getMax_salary());
+                System.out.format("+----------+------------------------+------------------+------------------+%n");
             }
             System.out.print("Job Name = ");
             this.job_title = sc.next();
@@ -63,11 +73,13 @@ public class JobView {
                 case 3:
                     System.out.println("== Delete ==");
                     InputData();
-                    System.out.println(jdao.getById(job_id).getJob_id() + " - "
-                            + jdao.getById(job_id).getJob_title());
+                    headerJob();
+                    System.out.format(tbl, jdao.getById(job_id).getJob_id(), jdao.getById(job_id).getJob_title(),
+                            jdao.getById(job_id).getMax_salary(), jdao.getById(job_id).getMax_salary());
+                    System.out.format("+----------+------------------------+------------------+------------------+%n");
                     System.out.print("Apakah ingin dihapus? (ya/tidak)");
                     String pil2 = sc.next();
-                    if (pil2.equalsIgnoreCase("ya") || pil2.equalsIgnoreCase("Ya")) {
+                    if (pil2.equalsIgnoreCase("ya")) {
                         System.out.println(
                                 jdao.delete(job_id)
                                 ? "Delete Berhasil" : "Delete Gagal"
@@ -76,9 +88,11 @@ public class JobView {
                     break;
 
                 case 4:
+                    headerJob();
                     for (Job j : jdao.getAll()) {
-                        System.out.println(j.getJob_id() + " - " + j.getJob_title() + " - " +  "Min Salary: " +j.getMin_salary() + " - " + "Max Salary: " +j.getMax_salary());
+                        System.out.format(tbl, j.getJob_id(), j.getJob_title(), j.getMin_salary(), j.getMax_salary());
                     }
+                    System.out.format("+----------+------------------------+------------------+------------------+%n");
                     break;
 
                 case 5:
@@ -88,12 +102,14 @@ public class JobView {
                             System.out.println("Data tidak ada!");
                             break;
                         } else {
-                            System.out.println(jdao.getById(job_id).getJob_id() + " - "
-                                    + jdao.getById(job_id).getJob_title());
+                            headerJob();
+                            System.out.format(tbl, jdao.getById(job_id).getJob_id(), jdao.getById(job_id).getJob_title(),
+                                    jdao.getById(job_id).getMax_salary(), jdao.getById(job_id).getMax_salary());
+                            System.out.format("+----------+------------------------+------------------+------------------+%n");
                         }
                     } while (jdao.getById(job_id) == null);
                     break;
-                    
+
                 case 6:
                     break;
 

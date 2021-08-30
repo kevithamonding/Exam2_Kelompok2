@@ -22,7 +22,15 @@ public class CountryView {
     CountryDAO cdao = new CountryDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();
     int region_id;
-    String country_id, country_name;
+    String country_id, country_name, tbl;
+
+    public void headerRegion() {
+        this.tbl = "| %-9s | %-17s | %-9s |%n";
+
+        System.out.format("+-----------+-------------------+-----------+%n");
+        System.out.format("| CountryId | Country Name      | RegionId  |%n");
+        System.out.format("+-----------+-------------------+-----------+%n");
+    }
 
     public void InputData() {
         System.out.print("Country ID = ");
@@ -30,9 +38,10 @@ public class CountryView {
         if (m.pil == 1 || m.pil == 2) {
             if (cdao.getById(country_id) != null) {
                 System.out.println("UPDATE DATA");
-                System.out.println(cdao.getById(country_id).getId() + " - "
-                        + cdao.getById(country_id).getName() + " - "
-                        + cdao.getById(country_id).getRegionId());
+                headerRegion();
+                System.out.format(tbl, cdao.getById(country_id).getId(), cdao.getById(country_id).getName(),
+                        cdao.getById(country_id).getRegionId());
+                System.out.format("+-----------+-------------------+-----------+%n");
             }
             System.out.print("Country Name = ");
             this.country_name = sc.next();
@@ -58,9 +67,10 @@ public class CountryView {
                 case 3:
                     System.out.println("== Delete ==");
                     InputData();
-                    System.out.println(cdao.getById(country_id).getId() + " - "
-                            + cdao.getById(country_id).getName() + " - "
-                            + cdao.getById(country_id).getRegionId());
+                    headerRegion();
+                    System.out.format(tbl, cdao.getById(country_id).getId(), cdao.getById(country_id).getName(),
+                            cdao.getById(country_id).getRegionId());
+                    System.out.format("+-----------+-------------------+-----------+%n");
                     System.out.print("Apakah ingin dihapus? (ya/tidak) ");
                     String pil2 = sc.next();
                     if (pil2.equalsIgnoreCase("ya")) {
@@ -71,9 +81,11 @@ public class CountryView {
                     }
                     break;
                 case 4:
+                    headerRegion();
                     for (Country c : cdao.getAll()) {
-                        System.out.println(c.getId() + " - " + c.getName() + " - " + c.getRegionId());
+                        System.out.format(tbl, c.getId(), c.getName(), c.getRegionId());
                     }
+                    System.out.format("+-----------+-------------------+-----------+%n");
                     break;
                 case 5:
                     do {
@@ -82,9 +94,10 @@ public class CountryView {
                             System.out.println("Data tidak ada!");
                             break;
                         } else {
-                            System.out.println(cdao.getById(country_id).getId() + " - "
-                                    + cdao.getById(country_id).getName() + " - "
-                                    + cdao.getById(country_id).getRegionId());
+                            headerRegion();
+                            System.out.format(tbl, cdao.getById(country_id).getId(), cdao.getById(country_id).getName(),
+                                    cdao.getById(country_id).getRegionId());
+                            System.out.format("+-----------+-------------------+-----------+%n");
                         }
                     } while (cdao.getById(country_id) == null);
                     break;

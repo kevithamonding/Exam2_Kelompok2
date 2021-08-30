@@ -21,7 +21,15 @@ public class DepartmentView {
     DBConnection dbc = new DBConnection();
     DepartmentDAO ddao = new DepartmentDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();
-    String department_id, department_name, location_id, manager_id;
+    String department_id, department_name, location_id, manager_id, tbl;
+
+    public void headerDepartment() {
+        this.tbl = "| %-12s | %-22s | %-10s | %-10s |%n";
+
+        System.out.format("+--------------+------------------------+------------+------------+%n");
+        System.out.format("| DepartmentId | Department Name        | LocationId | ManagerId  |%n");
+        System.out.format("+--------------+------------------------+------------+------------+%n");
+    }
 
     public void InputData() {
         System.out.print("Department ID = ");
@@ -29,8 +37,12 @@ public class DepartmentView {
         if (m.pil == 1 || m.pil == 2) {
             if (ddao.getById(department_id) != null) {
                 System.out.println("UPDATE DATA");
-                System.out.println(ddao.getById(department_id).getDepartment_id() + " - "
-                        + ddao.getById(department_id).getDepartment_name());
+                headerDepartment();
+                System.out.format(tbl, ddao.getById(department_id).getDepartment_id(),
+                        ddao.getById(department_id).getDepartment_name(),
+                        ddao.getById(department_id).getLocation_id(),
+                        ddao.getById(department_id).getManager_id());
+                System.out.format("+--------------+------------------------+------------+------------+%n");
             }
             System.out.print("Department Name = ");
             this.department_name = sc.next();
@@ -51,18 +63,22 @@ public class DepartmentView {
                     InputData();
                     ddao.save(new Department(department_id, department_name, location_id, manager_id));
                     break;
-                    
+
                 case 2:
                     System.out.println("== Update ==");
                     InputData();
                     ddao.save(new Department(department_id, department_name, location_id, manager_id));
                     break;
-                    
+
                 case 3:
                     System.out.println("== Delete ==");
                     InputData();
-                    System.out.println(ddao.getById(department_id).getDepartment_id() + " - "
-                            + ddao.getById(department_id).getDepartment_name());
+                    headerDepartment();
+                    System.out.format(tbl, ddao.getById(department_id).getDepartment_id(),
+                            ddao.getById(department_id).getDepartment_name(),
+                            ddao.getById(department_id).getLocation_id(),
+                            ddao.getById(department_id).getManager_id());
+                    System.out.format("+--------------+------------------------+------------+------------+%n");
                     System.out.print("Apakah ingin dihapus? (ya/tidak)");
                     String pil2 = sc.next();
                     if (pil2.equalsIgnoreCase("ya") || pil2.equalsIgnoreCase("Ya")) {
@@ -74,10 +90,12 @@ public class DepartmentView {
                     break;
 
                 case 4:
+                    headerDepartment();
                     for (Department d : ddao.getAll()) {
-                        System.out.println(d.getDepartment_id() + " - " + d.getDepartment_name() + " - " + "Location ID: " + d.getLocation_id() + 
-                        " - " + "Manager ID: "+ d.getManager_id());
+                        System.out.format(tbl, d.getDepartment_id(), d.getDepartment_name(),
+                                d.getLocation_id(), d.getManager_id());
                     }
+                    System.out.format("+--------------+------------------------+------------+------------+%n");
                     break;
 
                 case 5:
@@ -87,15 +105,19 @@ public class DepartmentView {
                             System.out.println("Data tidak ada!");
                             break;
                         } else {
-                            System.out.println(ddao.getById(department_id).getDepartment_id() + " - "
-                                    + ddao.getById(department_id).getDepartment_name());
+                            headerDepartment();
+                            System.out.format(tbl, ddao.getById(department_id).getDepartment_id(),
+                                    ddao.getById(department_id).getDepartment_name(),
+                                    ddao.getById(department_id).getLocation_id(),
+                                    ddao.getById(department_id).getManager_id());
+                            System.out.format("+--------------+------------------------+------------+------------+%n");
                         }
                     } while (ddao.getById(department_id) == null);
                     break;
-                
+
                 case 6:
                     break;
-                    
+
                 default:
                     System.out.println("Pilihan Anda Salah");
             }

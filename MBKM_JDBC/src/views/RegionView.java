@@ -22,7 +22,15 @@ public class RegionView {
     RegionDAO rdao = new RegionDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();
     int reg_id;
-    String reg_name;
+    String reg_name, tbl;
+
+    public void headerRegion() {
+        this.tbl = "| %-8s | %-16s |%n";
+
+        System.out.format("+----------+------------------+%n");
+        System.out.format("| RegionId | Region Name      |%n");
+        System.out.format("+----------+------------------+%n");
+    }
 
     public void InputData() {
         System.out.print("Region ID = ");
@@ -30,7 +38,9 @@ public class RegionView {
         if (m.pil == 1 || m.pil == 2) {
             if (rdao.getById(reg_id) != null) {
                 System.out.println("UPDATE DATA");
-                System.out.println(rdao.getById(reg_id).getId() + " - " + rdao.getById(reg_id).getName());
+                headerRegion();
+                System.out.format(tbl, rdao.getById(reg_id).getId(), rdao.getById(reg_id).getName());
+                System.out.format("+----------+------------------+%n");
             }
             System.out.print("Region Name = ");
             this.reg_name = sc.next();
@@ -54,8 +64,9 @@ public class RegionView {
                 case 3:
                     System.out.println("== Delete ==");
                     InputData();
-                    System.out.println(rdao.getById(reg_id).getId() + " - "
-                            + rdao.getById(reg_id).getName());
+                    headerRegion();
+                    System.out.format(tbl, rdao.getById(reg_id).getId(), rdao.getById(reg_id).getName());
+                    System.out.format("+----------+------------------+%n");
                     System.out.print("Apakah ingin dihapus? (ya/tidak) ");
                     String pil2 = sc.next();
                     if (pil2.equalsIgnoreCase("ya")) {
@@ -66,9 +77,11 @@ public class RegionView {
                     }
                     break;
                 case 4:
+                    headerRegion();
                     for (Region r : rdao.getAll()) {
-                        System.out.println(r.getId() + " - " + r.getName());
+                        System.out.format(tbl, r.getId(), r.getName());
                     }
+                    System.out.format("+----------+------------------+%n");
                     break;
                 case 5:
                     do {
@@ -77,7 +90,9 @@ public class RegionView {
                             System.out.println("Data tidak ada!");
                             break;
                         } else {
-                            System.out.println(rdao.getById(reg_id).getId() + " - " + rdao.getById(reg_id).getName());
+                            headerRegion();
+                            System.out.format(tbl, rdao.getById(reg_id).getId(), rdao.getById(reg_id).getName());
+                            System.out.format("+----------+------------------+%n");
                         }
                     } while (rdao.getById(reg_id) == null);
                     break;

@@ -21,7 +21,15 @@ public class LocationView {
     DBConnection dbc = new DBConnection();
     LocationDAO ldao = new LocationDAO(dbc.getConnection());
     MBKM_JDBC m = new MBKM_JDBC();
-    String location_id, street_address, postal_code, city, state_province, country_id;
+    String location_id, street_address, postal_code, city, state_province, country_id, tbl;
+
+    public void headerLocation() {
+        this.tbl = "| %-10s | %-25s | %-11s | %-13s | %-26s | %-10s |%n";
+
+        System.out.format("+------------+---------------------------+-------------+---------------+----------------------------+------------+%n");
+        System.out.format("| LocationId | Street Address            | Postal Code | City          | State Province             | CountryId  |%n");
+        System.out.format("+------------+---------------------------+-------------+---------------+----------------------------+------------+%n");
+    }
 
     public void InputData() {
         System.out.print("Location ID = ");
@@ -29,11 +37,12 @@ public class LocationView {
         if (m.pil == 1 || m.pil == 2) {
             if (ldao.getById(location_id) != null) {
                 System.out.println("UPDATE DATA");
-                System.out.println(ldao.getById(location_id).getLocation_id() + " - "
-                        + ldao.getById(location_id).getStreet_address() + " - "
-                        + ldao.getById(location_id).getPostal_code() + " - "
-                        + ldao.getById(location_id).getCity()
-                );
+                headerLocation();
+                System.out.format(tbl, ldao.getById(location_id).getLocation_id(),
+                        ldao.getById(location_id).getStreet_address(), ldao.getById(location_id).getPostal_code(),
+                        ldao.getById(location_id).getCity(), ldao.getById(location_id).getState_province(),
+                        ldao.getById(location_id).getCountry_id());
+                System.out.format("+------------+---------------------------+-------------+---------------+----------------------------+------------+%n");
             }
             System.out.print("Street Address = ");
             this.street_address = sc.next();
@@ -68,13 +77,15 @@ public class LocationView {
                 case 3:
                     System.out.println("== Delete ==");
                     InputData();
-                    System.out.println(ldao.getById(location_id).getLocation_id() + " - "
-                            + ldao.getById(location_id).getStreet_address() + " - "
-                            + ldao.getById(location_id).getPostal_code() + " - "
-                            + ldao.getById(location_id).getCity());
+                    headerLocation();
+                    System.out.format(tbl, ldao.getById(location_id).getLocation_id(),
+                            ldao.getById(location_id).getStreet_address(), ldao.getById(location_id).getPostal_code(),
+                            ldao.getById(location_id).getCity(), ldao.getById(location_id).getState_province(),
+                            ldao.getById(location_id).getCountry_id());
+                    System.out.format("+------------+---------------------------+-------------+---------------+----------------------------+------------+%n");
                     System.out.print("Apakah ingin dihapus? (ya/tidak)");
                     String pil2 = sc.next();
-                    if (pil2.equalsIgnoreCase("ya") || pil2.equalsIgnoreCase("Ya")) {
+                    if (pil2.equalsIgnoreCase("ya")) {
                         System.out.println(
                                 ldao.delete(location_id)
                                 ? "Delete Berhasil" : "Delete Gagal"
@@ -83,10 +94,12 @@ public class LocationView {
                     break;
 
                 case 4:
+                    headerLocation();
                     for (Location l : ldao.getAll()) {
-                        System.out.println(l.getLocation_id() + " - " + l.getStreet_address() + " - " + l.getPostal_code() + " - " 
-                        + l.getCity() + " - " + l.getState_province() + " - " + "Location ID: " + l.getLocation_id());
+                        System.out.format(tbl, l.getLocation_id(), l.getStreet_address(), l.getPostal_code(),
+                                l.getCity(), l.getState_province(), l.getLocation_id());
                     }
+                    System.out.format("+------------+---------------------------+-------------+---------------+----------------------------+------------+%n");
                     break;
 
                 case 5:
@@ -96,15 +109,16 @@ public class LocationView {
                             System.out.println("Data tidak ada!");
                             break;
                         } else {
-                            System.out.println(ldao.getById(location_id).getLocation_id() + " - "
-                                    + ldao.getById(location_id).getStreet_address() + " - "
-                                    + ldao.getById(location_id).getPostal_code() + " - "
-                                    + ldao.getById(location_id).getCity()
-                            );
+                            headerLocation();
+                            System.out.format(tbl, ldao.getById(location_id).getLocation_id(),
+                                    ldao.getById(location_id).getStreet_address(), ldao.getById(location_id).getPostal_code(),
+                                    ldao.getById(location_id).getCity(), ldao.getById(location_id).getState_province(),
+                                    ldao.getById(location_id).getCountry_id());
+                            System.out.format("+------------+---------------------------+-------------+---------------+----------------------------+------------+%n");
                         }
                     } while (ldao.getById(location_id) == null);
                     break;
-                    
+
                 case 6:
                     break;
 
